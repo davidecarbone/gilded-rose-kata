@@ -15,9 +15,9 @@ class Item
     const MIN_QUALITY = 0;
     const MAX_QUALITY = 50;
 
-    public $name;
-    public $sellIn;
-    public $quality;
+    protected $name;
+    protected $sellIn;
+    protected $quality;
 
 
     /**
@@ -35,6 +35,15 @@ class Item
     public function __toString()
     {
         return "{$this->name}, {$this->sellIn}, {$this->quality}";
+    }
+
+    public function basicProperties()
+    {
+        return [
+            'name' => $this->name,
+            'sellIn' => $this->sellIn,
+            'quality' => $this->quality
+        ];
     }
 
     public function updateQuality()

@@ -10,6 +10,7 @@ class GildedRoseTest extends TestCase
 {
     public function testFoo()
     {
+        /** @var Item[] $items */
         $items = [
             new Item("foo", 0, 0)
         ];
@@ -17,6 +18,8 @@ class GildedRoseTest extends TestCase
         $gildedRose = new GildedRose($items);
         $gildedRose->updateItemsQualityAndSellIn();
 
-        $this->assertEquals("foo", $items[0]->name);
+        $itemProperties = $items[0]->basicProperties();
+
+        $this->assertEquals("foo", $itemProperties['name']);
     }
 }
