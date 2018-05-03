@@ -1,10 +1,22 @@
 <?php
 
-class GildedRoseTest extends PHPUnit\Framework\TestCase {
-    function testFoo() {
-        $items = array(new Item("foo", 0, 0));
+namespace GildedRose\Test;
+
+use PHPUnit\Framework\TestCase;
+use GildedRose\GildedRose;
+use GildedRose\Item;
+
+class GildedRoseTest extends TestCase
+{
+    public function testFoo()
+    {
+        $items = [
+            new Item("foo", 0, 0)
+        ];
+
         $gildedRose = new GildedRose($items);
-        $gildedRose->update_quality();
-        $this->assertEquals("fixme", $items[0]->name);
+        $gildedRose->updateItemsQualityAndSellIn();
+
+        $this->assertEquals("foo", $items[0]->name);
     }
 }

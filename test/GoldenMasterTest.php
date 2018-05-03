@@ -5,8 +5,10 @@
 // The following runs it will use the content of that file to check if the behaviour of the code didn't change
 // If you deliberately change the behaviour of the code then you can regenerate the GOLDEN_MASTER by deleting the file ./test/support/GOLDEN_MASTER
 
-class GoldenMasterTest extends PHPUnit\Framework\TestCase {
-    function testGoldenMaster() {
+class GoldenMasterTest extends PHPUnit\Framework\TestCase
+{
+    public function testGoldenMaster()
+    {
         global $argv;
         $daysToRun = 30;
         $scriptToRun = __DIR__ . '/../bin/fixture.php';

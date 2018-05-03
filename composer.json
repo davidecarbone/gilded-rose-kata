@@ -12,9 +12,8 @@
     ],
     "require": {},
     "autoload": {
-        "files": ["src/gilded_rose.php"],
         "psr-4": {
-            "\\": "src/"
+            "GildedRose\\": "src/"
         }
     }
 }
