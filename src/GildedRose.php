@@ -16,11 +16,13 @@ class GildedRose
         $this->items = $items;
     }
 
-    public function updateItemsQualityAndSellIn()
+    /**
+     * At the end of each day, update items quality and sellIn properties.
+     */
+    public function updateItemsMarketValue()
     {
         foreach ($this->items as $item) {
-            $item->decreaseSellIn();
-            $item->updateQuality();
+            $item->updateMarketValue();
         }
     }
 }

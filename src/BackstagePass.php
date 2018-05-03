@@ -3,9 +3,9 @@
 namespace GildedRose;
 
 /**
- * Backstage passes increase in quality as their SellIn value approaches;
+ * Backstage passes increase in quality as their sellIn value approaches;
  * quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less;
- * quality drops to 0 when their SellIn value is minor than 0.
+ * quality drops to 0 when their sellIn value is minor than 0.
  */
 class BackstagePass extends Item
 {

@@ -14,6 +14,6 @@ class LegendaryItem extends Item
 
     public function decreaseSellIn()
     {
-        // Legendary items never decrease sell in
+        // Legendary items never decrease sellIn
     }
 }

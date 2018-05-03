@@ -16,7 +16,7 @@ class GildedRoseTest extends TestCase
         ];
 
         $gildedRose = new GildedRose($items);
-        $gildedRose->updateItemsQualityAndSellIn();
+        $gildedRose->updateItemsMarketValue();
 
         $itemProperties = $items[0]->basicProperties();
 

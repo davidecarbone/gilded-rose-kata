@@ -5,10 +5,9 @@ namespace GildedRose;
 /**
  * All items have a SellIn value which denotes the number of days we have to sell the item;
  * all items have a Quality value which denotes how valuable the item is;
- * at the end of each day our system lowers both values for every item;
- * once the sell by date has passed, Quality degrades twice as fast
+ * once the sell by date has passed, quality degrades twice as fast;
  * the quality of an item is never negative;
- * the Quality of an item is never more than 50.
+ * the quality of an item is never more than 50.
  */
 class Item
 {
@@ -46,18 +45,25 @@ class Item
         ];
     }
 
-    public function updateQuality()
+    public function updateMarketValue()
+    {
+        $this->decreaseSellIn();
+        $this->updateQuality();
+    }
+
+    protected function decreaseSellIn()
+    {
+        $this->sellIn = $this->sellIn - 1;
+    }
+
+    protected function updateQuality()
     {
         $this->decreaseQuality();
 
+        // Once the sell by date has passed, quality degrades twice as fast
         if ($this->sellIn < 0) {
             $this->decreaseQuality();
         }
-    }
-
-    public function decreaseSellIn()
-    {
-        $this->sellIn = $this->sellIn - 1;
     }
 
     protected function increaseQuality()
