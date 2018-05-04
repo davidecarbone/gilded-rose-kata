@@ -13,6 +13,7 @@ class Item
 {
     const MIN_QUALITY = 0;
     const MAX_QUALITY = 50;
+    const QUALITY_DECREASE_COEFFICIENT = 1;
 
     protected $name;
     protected $sellIn;
@@ -76,7 +77,7 @@ class Item
     protected function decreaseQuality()
     {
         if ($this->quality > self::MIN_QUALITY) {
-            $this->quality = $this->quality - 1;
+            $this->quality = $this->quality - static::QUALITY_DECREASE_COEFFICIENT;
         }
     }
 }
