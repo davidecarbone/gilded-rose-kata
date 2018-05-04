@@ -9,6 +9,8 @@ class LegendaryItem extends Item
 {
     const MIN_QUALITY = 80;
     const MAX_QUALITY = 80;
+    const QUALITY_DECREASE_COEFFICIENT = 0;
+    const SELL_IN_DECREASE_COEFFICIENT = 0;
 
     /**
      * @param string $name
@@ -19,15 +21,5 @@ class LegendaryItem extends Item
     {
         // Legendary items' quality is 80 and it never alters
         parent::__construct($name, $sellIn, self::MAX_QUALITY);
-    }
-
-    public function updateQuality()
-    {
-        // Legendary items' quality never alters
-    }
-
-    public function decreaseSellIn()
-    {
-        // Legendary items are not sellable
     }
 }
