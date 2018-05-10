@@ -1,6 +1,8 @@
 <?php
 
-namespace GildedRose;
+namespace GildedRose\Item;
+
+use GildedRose\Quality\Quality;
 
 /**
  * All items have a SellIn value which denotes the number of days we have to sell the item;
@@ -11,10 +13,6 @@ namespace GildedRose;
  */
 class Item
 {
-    const MIN_QUALITY = 0;
-    const MAX_QUALITY = 50;
-    const QUALITY_INCREASE_COEFFICIENT = 1;
-    const QUALITY_DECREASE_COEFFICIENT = 1;
     const SELL_IN_DECREASE_COEFFICIENT = 1;
 
     protected $name;
@@ -25,9 +23,9 @@ class Item
     /**
      * @param string $name
      * @param int $sellIn
-     * @param int $quality
+     * @param Quality $quality
      */
-    public function __construct($name, $sellIn, $quality)
+    public function __construct($name, $sellIn, Quality $quality)
     {
         $this->name = $name;
         $this->sellIn = $sellIn;
@@ -36,7 +34,7 @@ class Item
 
     public function __toString()
     {
-        return "{$this->name}, {$this->sellIn}, {$this->quality}";
+        return "{$this->name}, {$this->sellIn}, {$this->quality->getValue()}";
     }
 
     public function basicProperties()
@@ -44,7 +42,7 @@ class Item
         return [
             'name' => $this->name,
             'sellIn' => $this->sellIn,
-            'quality' => $this->quality
+            'quality' => $this->quality->getValue()
         ];
     }
 
@@ -61,25 +59,11 @@ class Item
 
     protected function updateQuality()
     {
-        $this->decreaseQuality();
+        $this->quality->decrease();
 
         // Once the sell by date has passed, quality degrades twice as fast
         if ($this->sellIn < 0) {
-            $this->decreaseQuality();
-        }
-    }
-
-    protected function increaseQuality()
-    {
-        if ($this->quality < self::MAX_QUALITY) {
-            $this->quality = $this->quality + static::QUALITY_INCREASE_COEFFICIENT;
-        }
-    }
-
-    protected function decreaseQuality()
-    {
-        if ($this->quality > self::MIN_QUALITY) {
-            $this->quality = $this->quality - static::QUALITY_DECREASE_COEFFICIENT;
+            $this->quality->decrease();
         }
     }
 }

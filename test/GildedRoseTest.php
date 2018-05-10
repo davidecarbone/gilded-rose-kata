@@ -2,10 +2,11 @@
 
 namespace GildedRose\Test;
 
-use GildedRose\LegendaryItem;
+use GildedRose\Item\LegendaryItem;
+use GildedRose\Quality\Quality;
 use PHPUnit\Framework\TestCase;
 use GildedRose\GildedRose;
-use GildedRose\Item;
+use GildedRose\Item\Item;
 
 class GildedRoseTest extends TestCase
 {
@@ -13,7 +14,7 @@ class GildedRoseTest extends TestCase
     {
         /** @var Item[] $items */
         $items = [
-            new Item("foo", 0, 0)
+            new Item("foo", 0, new Quality(0))
         ];
 
         $gildedRose = new GildedRose($items);
@@ -26,9 +27,9 @@ class GildedRoseTest extends TestCase
 
     public function testLegendaryItemsFixedQuality()
     {
-        $item = new LegendaryItem("Sulfuras", 0, 10);
+        $item = new LegendaryItem("Sulfuras", 0, new Quality(10));
         $itemProperties = $item->basicProperties();
 
-        $this->assertEquals(LegendaryItem::MAX_QUALITY, $itemProperties['quality']);
+        $this->assertEquals(LegendaryItem::STABLE_QUALITY, $itemProperties['quality']);
     }
 }

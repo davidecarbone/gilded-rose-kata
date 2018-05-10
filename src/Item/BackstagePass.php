@@ -1,6 +1,6 @@
 <?php
 
-namespace GildedRose;
+namespace GildedRose\Item;
 
 /**
  * Backstage passes increase in quality as their sellIn value approaches;
@@ -12,22 +12,20 @@ class BackstagePass extends Item
     const SELL_IN_FIRST_THRESHOLD = 10;
     const SELL_IN_SECOND_THRESHOLD = 5;
 
-
     public function updateQuality()
     {
         if ($this->sellIn < 0) {
-            $this->quality = self::MIN_QUALITY;
+            $this->quality->dropToMinimum();
         } else {
-            $this->increaseQuality();
+            $this->quality->increase();
 
             if ($this->sellIn < self::SELL_IN_FIRST_THRESHOLD) {
-                $this->increaseQuality();
+                $this->quality->increase();
             }
 
             if ($this->sellIn < self::SELL_IN_SECOND_THRESHOLD) {
-                $this->increaseQuality();
+                $this->quality->increase();
             }
         }
-
     }
 }
